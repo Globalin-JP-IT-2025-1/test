@@ -1,0 +1,18 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    /* text-align: center; */
+}
+
+button {
+    background-color: #008080 !important;
+    width: 300;
+    height: 100;
+
+    border-color: #008080 !important;
+    border-radius: 3px;
+
+    color: aliceblue !important;
+    font-family: 'consolas' !important;
+
+}
