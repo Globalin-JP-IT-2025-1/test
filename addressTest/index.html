@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Places API 주소 검색</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=google_api_key&libraries=places"></script>
+
+    <style>
+      body {
+        font-size: 16pt;
+        font-family: noto sans kr, meiryo, consolas;
+      }
+
+      #searchBox,
+      #zipcodeBox,
+      #addressBox,
+      #addressDetailBox {
+        width: 500px;
+        height: 50px;
+
+        border: 2px solid #091267;
+        border-radius: 10px;
+
+        font-size: 1.25em; /* 20pt */
+
+        text-indent: 10px;
+      }
+
+      #zipcodeBox,
+      #addressBox {
+        background-color: #f0f0f0;
+      }
+
+      #addressDetailBox {
+        background-color: white;
+      }
+
+      #zipcodeLabel,
+      #addressLabel,
+      #addressDetailLabel {
+        font-size: 1.25em; /* 20pt */
+        color: #091267;
+        font-weight: bold;
+      }
+      
+      #addressTable tr, th, td {
+        padding: 10px;
+      }
+
+      #addressTable th {
+        height: 50px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      #bringAddressBtn {
+        all: unset;
+
+        width: 200px;
+        height: 50px;
+
+        background-color: #091267;
+        color: white;
+        border: 2px solid #091267;
+        border-radius: 10px;
+        font-size: 1.2em;
+
+        text-align: center;
+      }
+
+      #bringAddressBtn:hover {
+        background-color: #cdf0ff;
+        color: #091267;
+      }
+
+      #bringAddressBtn:active {
+        transform: scale(0.95); /* 버튼 크기를 95%로 줄임 */
+      }
+
+    </style>
+
+</head>
+<body>
+    <input id="searchBox" type="text" placeholder="주소 입력">
+    <button id="bringAddressBtn">주소 가져오기</button>
+    <br><br>
+    <table id="addressTable">
+      <tr>
+        <th><label id="zipcodeLabel">우편번호 : </label></th>
+        <td><input id="zipcodeBox" type="text" placeholder="우편번호 자동 입력" readonly>
+          <input id="mr_zipcode" type="text" placeholder="DB 전달용 우편번호"> <!-- DB 전달용 우편번호 / 테스트 후 hidden으로 변경 -->
+        </td>
+      </tr>
+      <tr>
+        <th><label id="addressLabel">주소 : </label></th>
+        <td><input id="addressBox" type="text" placeholder="주소 자동 입력" readonly>
+          <input id="mr_address" type="text" placeholder="DB 전달용 주소"> <!-- DB 전달용 주소 / 테스트 후 hidden으로 변경 -->
+        </td>
+      </tr>
+      <tr>
+        <th><label id="addressDetailLabel">상세 주소 : </label></th>
+        <td><input id="addressDetailBox" type="text" placeholder="상세주소 입력">
+          <input id="mr_addressDetail" type="text" placeholder="DB 전달용 상세 주소"> <!-- DB 전달용 상세 주소 / 테스트 후 hidden으로 변경 -->
+        </td>
+      </tr>
+    </table>
+
+    <pre id="jsonOutput"></pre>
+
+    <script>
+        function initAutocomplete() {
+            var input = document.getElementById('searchBox');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            
+            // autocomplete.addListener('place_changed', function() {
+            //     var place = autocomplete.getPlace();
+            // });
+
+            autocomplete.addListener('place_changed', function() {
+              var place = autocomplete.getPlace();
+              var jsonData = JSON.stringify(place, null, 2); // JSON 데이터 변환
+              document.getElementById('jsonOutput').textContent = jsonData; // body에 출력
+          });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    </script>
+</body>
+</html>
