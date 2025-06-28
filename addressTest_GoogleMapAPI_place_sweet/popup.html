@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>주소 찾기 모달창</title>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdCqFS0zt7GHORgwR0lM7muaNSnA0swh4&libraries=places"></script>
+
+
+  <style>
+    body {
+      font-size: 16pt;
+      font-family: noto sans kr, meiryo, consolas;
+    }
+    
+    li {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <input id="searchBox" class="swal2-input" type="text" placeholder="주소 입력">
+
+  <br>
+  json:
+  <input type="text" id="jsonOutput2" value="">
+  <pre id="jsonOutput"></pre>
+  
+
+  <script>
+    function initAutocomplete() {
+      var input = document.getElementById('searchBox');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+
+      // autocomplete.addListener('place_changed', function() {
+      //     var place = autocomplete.getPlace();
+      // });
+
+      autocomplete.addListener('place_changed', function () {
+        var place = autocomplete.getPlace();
+        var jsonData = JSON.stringify(place, null, 2); // JSON 데이터 변환
+        const parsedData = JSON.parse(jsonData);
+        //document.getElementById('jsonOutput').textContent = parsedData.adr_address;  // body에 출력
+        document.getElementById('jsonOutput').textContent = jsonData;
+      });
+    }
+
+    function getZipcode() {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = parsedData.adr_address;
+
+      const street = tempDiv.querySelector(".street-address")?.innerText || "";
+      const postalCode = tempDiv.querySelector(".postal-code")?.innerText || "";
+      const country = tempDiv.querySelector(".country-name")?.innerText || "";
+
+      document.getElementById('zipcodeBoxForRegForm').textContent = postalCode;
+    }
+
+    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+  </script>
+</body>
+
+</html>
