@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 목록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <table class="table align-middle">
+            <thead>
+	        	<tr>
+	        		<th>NO</th>
+	        		<th>도서 표지</th>
+	        		<th>도서 정보</th>
+	        		<th>도서 상태</th>
+	        		<th>조회수</th>
+	        		<th>리뷰수</th>
+	        	</tr>
+	        </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td style="width:60px;">
+                        <img src="https://bookthumb-phinf.pstatic.net/cover/067/378/06737822.jpg?type=m1&udate=20171111"
+                            alt="호기심 출렁 우주 세상 책 표지" width="50">
+                    </td>
+                    <td>
+                        <div class="text-secondary mb-1">기술과학</div>
+                        <div class="fw-bold fs-4 mb-2">1. 호기심 출렁 우주 세상</div>
+                        <div class="d-flex flex-wrap mb-2 gap-3">
+                            <div><span class="fw-semibold">저자:</span> 홍용식</div>
+                            <div><span class="fw-semibold">발행자:</span> 주니어랜덤</div>
+                            <div><span class="fw-semibold">발행연도:</span> 2008</div>
+                        </div>
+                        <div class="d-flex flex-wrap mb-2 gap-3">
+                            <div><span class="fw-semibold">ISBN:</span> 9788925508634</div>
+                            <div><span class="fw-semibold">분류기호:</span> 아동 500-홍65ㅎ</div>
+                            <div><span class="fw-semibold">도서관:</span> 글로벌인 도서관</div>
+                            <div><span class="fw-semibold">자료실:</span> 일반자료실</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2 flex-column">
+                            <div class="mb-2 text-danger fw-semibold">대출중</div>
+                            <button class="btn btn-secondary btn-sm" disabled>도서예약불가</button>
+                            <button class="btn btn-outline-success btn-sm">관심도서담기</button>
+                        </div>
+                    </td>
+                    <td>1,234</td>
+                    <td>12</td>
+                </tr>
+            </tbody>    
+        </table>
+    </div>
+
+</body>
+
+</html>
